@@ -145,6 +145,24 @@ Restructured ProjectCard.jsx to isolate the 3D flip animation from navigation lo
 ✅ No conflicts between animation state and routing
 ✅ Component is more maintainable
 
+### Hero Image Display Fix
+Fixed hero profile image not displaying at correct height on landing page.
+
+**Problem:**
+Base CSS rule `img { height: auto; }` was overriding Tailwind's `h-[400px]` class, forcing all images to auto-height.
+
+**Solution:**
+Removed `height: auto` from base img styling in Home.css, keeping only:
+- `display: block` - ensures proper block layout
+- `max-width: 100%` - prevents overflow on mobile
+
+**Result:**
+✅ Hero profile image now displays at correct h-[400px] height
+✅ Image maintains proper aspect ratio with object-contain
+✅ Tailwind height utilities now work correctly for all images
+✅ Max-width constraint prevents overflow
+✅ Default height is auto for responsive images
+
 ## [1.2.0] - 2025-11-27
 
 ### Overview
