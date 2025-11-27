@@ -17,10 +17,10 @@ const images = {
 
 export default function Home() {
   return (
-    <div className="w-full min-h-screen bg-white pt-[122px]" id="home">
+    <div className="w-full min-h-screen bg-white pt-[122px]">
 
       {/* Hero Section */}
-      <section className="pt-[122px] bg-[#faeb99] px-12 py-20">
+      <section id="home" className="pt-[122px] bg-[#faeb99] px-12 py-20">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-16">
           <div className="flex-1">
             <div className="mb-6">

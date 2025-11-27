@@ -21,14 +21,15 @@ function Navigation() {
       const sections = ['home', 'projects', 'about'];
       let currentSection = 'home';
 
+      // Iterate through all sections and find which one is currently active
+      // A section becomes active when it's within 300px of the top
       for (const sectionId of sections) {
         const element = document.getElementById(sectionId);
         if (element) {
           const rect = element.getBoundingClientRect();
-          // Check if section is in viewport (accounting for navbar height)
-          if (rect.top <= 200 && rect.bottom > 200) {
+          // Section is active when its top is at or above 300px from viewport top
+          if (rect.top <= 300) {
             currentSection = sectionId;
-            break;
           }
         }
       }
