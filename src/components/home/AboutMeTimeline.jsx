@@ -1,4 +1,3 @@
-import React from 'react';
 import useInView from '../../hooks/useInView';
 
 function TimelineSection({ startDate, endDate, isVisible, isFirst = false }) {

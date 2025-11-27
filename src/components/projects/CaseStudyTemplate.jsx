@@ -1,4 +1,3 @@
-import React from 'react';
 import Badge from '../home/Badge';
 
 function CaseStudyTemplate({ project, children }) {

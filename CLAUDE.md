@@ -1,0 +1,1 @@
+- Always read and update the CHANGELOG.md file to maintain a permanent memory of the development process. Use it for context, understanding past bugs, issues and changes that have been made so far.

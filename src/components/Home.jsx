@@ -1,4 +1,3 @@
-import React from 'react';
 import Badge from './home/Badge';
 import ProjectCard from './home/ProjectCard';
 import AboutMeTimeline from './home/AboutMeTimeline';
@@ -26,7 +25,7 @@ export default function Home() {
           <div className="flex-1">
             <div className="mb-6">
               <h1 className="text-[80px] font-italiana font-normal text-black leading-tight">
-                Hi! I'm Tamara
+                Hi! I&apos;m Tamara
               </h1>
               <div className="h-1 mt-2" style={{
                 width: '300px',
