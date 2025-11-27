@@ -1,10 +1,47 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { projectsData } from '../../data/projects';
 
 function Navigation() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [scrollSection, setScrollSection] = useState('home');
   const navigate = useNavigate();
+  const location = useLocation();
+  const isHome = location.pathname === '/';
+  const isProjectPage = location.pathname.startsWith('/projects/');
+
+  // Determine active section: project page takes precedence, then scroll position
+  const activeSection = isProjectPage ? 'projects' : scrollSection;
+
+  // Detect active section based on scroll position on home page
+  useEffect(() => {
+    if (!isHome) return; // Only track sections on home page
+
+    const handleScroll = () => {
+      const sections = ['home', 'projects', 'about'];
+      let currentSection = 'home';
+
+      for (const sectionId of sections) {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          // Check if section is in viewport (accounting for navbar height)
+          if (rect.top <= 200 && rect.bottom > 200) {
+            currentSection = sectionId;
+            break;
+          }
+        }
+      }
+
+      setScrollSection(currentSection);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    // Initial check
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isHome]);
 
   const scrollToSection = (sectionId) => {
     if (window.location.pathname === '/') {
@@ -26,9 +63,19 @@ function Navigation() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-white h-[122px] flex items-center px-12 shadow-sm z-50">
+    <nav className="fixed top-0 left-0 right-0 bg-white h-[122px] flex items-center px-12 border-b-4 border-[#faeb99] z-50">
       <div className="flex gap-12 text-3xl font-montserrat font-normal items-center">
-        <Link to="/" className="tracking-wider hover:opacity-70 transition">Home</Link>
+        {/* Home Link */}
+        <Link
+          to="/"
+          className={`tracking-wider transition ${
+            activeSection === 'home' && isHome
+              ? 'underline decoration-[#5d5846] decoration-4 underline-offset-4'
+              : 'hover:opacity-70'
+          }`}
+        >
+          Home
+        </Link>
 
         {/* Projects Dropdown */}
         <div
@@ -38,9 +85,23 @@ function Navigation() {
         >
           <button
             onClick={() => scrollToSection('projects')}
-            className="hover:underline transition"
+            className={`flex items-center gap-2 transition ${
+              activeSection === 'projects' || isProjectPage
+                ? 'underline decoration-[#5d5846] decoration-4 underline-offset-4'
+                : 'hover:opacity-70'
+            }`}
           >
             Projects
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path d="M6 9l6 6 6-6" />
+            </svg>
           </button>
 
           {isDropdownOpen && (
@@ -64,9 +125,14 @@ function Navigation() {
           )}
         </div>
 
+        {/* About Me Link */}
         <button
           onClick={() => scrollToSection('about')}
-          className="hover:underline transition text-left"
+          className={`transition text-left ${
+            activeSection === 'about' && isHome
+              ? 'underline decoration-[#5d5846] decoration-4 underline-offset-4'
+              : 'hover:opacity-70'
+          }`}
         >
           About me
         </button>
