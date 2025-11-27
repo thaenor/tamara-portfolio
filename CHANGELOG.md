@@ -124,6 +124,27 @@ Enhanced ProjectCard.jsx 3D flip effect for better cross-browser compatibility b
 ✅ Both front and back sides render with proper perspective
 ✅ No visual glitches or animation stuttering
 
+### ProjectCard Component Architecture Optimization
+Restructured ProjectCard.jsx to isolate the 3D flip animation from navigation logic:
+
+**Changes:**
+- Separated Link component to only wrap title/year (for case study navigation)
+- Moved 3D flip container (card image) into independent sibling div
+- Event handlers (onMouseEnter/onMouseLeave) now work cleanly without interference
+- State management (isFlipped) controls only the image rotation
+
+**Why This Matters:**
+- Prevents the Link component from interfering with 3D transform state
+- Isolates animation concerns from routing concerns
+- Cleaner component architecture
+- More maintainable and scalable structure
+
+**Result:**
+✅ 3D flip animation fully operational and smooth
+✅ Navigation to case studies still works correctly
+✅ No conflicts between animation state and routing
+✅ Component is more maintainable
+
 ## [1.2.0] - 2025-11-27
 
 ### Overview
