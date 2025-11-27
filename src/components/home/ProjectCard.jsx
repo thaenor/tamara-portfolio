@@ -21,7 +21,10 @@ function ProjectCard({ imageSrc, backImage, title, year, tags = [], slug }) {
       {/* 3D Flip Container */}
       <div
         className="w-[271px] h-[274px] relative mb-6 cursor-pointer"
-        style={{ perspective: '1000px' }}
+        style={{
+          perspective: '1000px',
+          WebkitPerspective: '1000px',
+        }}
         onMouseEnter={() => setIsFlipped(true)}
         onMouseLeave={() => setIsFlipped(false)}
       >
@@ -30,13 +33,18 @@ function ProjectCard({ imageSrc, backImage, title, year, tags = [], slug }) {
           className="w-full h-full relative transition-transform duration-500"
           style={{
             transformStyle: 'preserve-3d',
+            WebkitTransformStyle: 'preserve-3d',
             transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+            WebkitTransform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
           }}
         >
           {/* Front Side */}
           <div
             className="w-[271px] h-[274px] rounded-full bg-white border-4 border-[#cabc84] shadow-lg overflow-hidden absolute inset-0 group-hover:border-[#5d5846] transition"
-            style={{ backfaceVisibility: 'hidden' }}
+            style={{
+              backfaceVisibility: 'hidden',
+              WebkitBackfaceVisibility: 'hidden',
+            }}
           >
             <img
               src={imageSrc}
@@ -50,7 +58,9 @@ function ProjectCard({ imageSrc, backImage, title, year, tags = [], slug }) {
             className="w-[271px] h-[274px] rounded-full bg-white border-4 border-[#cabc84] shadow-lg overflow-hidden absolute inset-0 group-hover:border-[#5d5846] transition"
             style={{
               backfaceVisibility: 'hidden',
+              WebkitBackfaceVisibility: 'hidden',
               transform: 'rotateY(180deg)',
+              WebkitTransform: 'rotateY(180deg)',
             }}
           >
             <img
