@@ -48,7 +48,7 @@ export const projectsData = [
     tags: ['Discovery', 'UX/UI'],
     thumbnail: '/Freely thumbnail.png',
     backImage: '/Freely thumbnail.png',
-    logo: '/logos/freely-logo.png',
+    logo: '/Logos/freely-logo.png',
     description: 'A modern weather web application with intuitive UX.',
     overview: '',
     challenge: '',
