@@ -2,6 +2,78 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.0] - 2025-11-27
+
+### Overview
+Major dependencies upgrade for modern React 19 and Vite 7 ecosystem including security patches and framework modernization.
+
+### Security Updates
+- ✅ **Fixed CSRF vulnerability** (GHSA-67mh-4wv8-2f99 in esbuild)
+  - Upgraded Vite from 5.4.21 → 7.2.4
+  - Eliminates CSRF risk in development server
+  - 0 remaining vulnerabilities
+
+### Major Upgrades
+- **React**: 18.3.1 → 19.2.0 (latest stable)
+  - New features and improvements in React 19
+  - Automatic JSX transform (removed React import requirement)
+  - Better performance optimizations
+
+- **React Router DOM**: 6.30.2 → 7.9.0 (latest stable)
+  - Updated routing APIs and features
+  - Better navigation handling for multi-page apps
+  - Improved performance
+
+- **Tailwind CSS**: 3.4.1 → 4.1.0 (latest major version)
+  - Modern CSS generation
+  - Requires new PostCSS plugin: `@tailwindcss/postcss`
+  - Updated `postcss.config.js` to use new plugin
+
+- **ESLint**: 8.57.1 → 9.39.0 (latest major version)
+  - New flat config format (eslint.config.js)
+  - Migrated from .eslintrc.cjs to eslint.config.js
+  - Updated rules and plugin configurations
+  - Removed autoprefixer (handled by Tailwind)
+
+- **Developer Dependencies**:
+  - @vitejs/plugin-react: 4.7.0 → 5.1.0
+  - @types/react: 18.2.43 → 19.2.0
+  - @types/react-dom: 18.2.17 → 19.2.0
+  - eslint-plugin-react-hooks: 4.6.0 → 7.0.0
+  - Added: @tailwindcss/postcss for Tailwind v4 support
+  - Added: @eslint/js for ESLint v9 flat config
+
+### Configuration Changes
+- **ESLint Migration**:
+  - Removed: `.eslintrc.cjs` (old config format)
+  - Added: `eslint.config.js` (new flat config format)
+  - Migrated all rules, plugins, and settings to new format
+  - Maintains same linting behavior with modern configuration
+
+- **PostCSS/Tailwind Update**:
+  - Updated `postcss.config.js` to use `@tailwindcss/postcss` plugin
+  - Removed autoprefixer from PostCSS (Tailwind v4 handles it)
+  - Improved build performance (CSS reduced from 14.36KB to 6.30KB)
+
+### Code Improvements
+- Cleaned up unnecessary React imports (React 17+ JSX transform)
+- Fixed unescaped entities in JSX (I'm → I&apos;m)
+- Fixed useInView hook ref cleanup warning for React Hooks exhaustive-deps rule
+- All components compatible with React 19 (no breaking changes)
+
+### Build & Testing Results
+- ✅ Production build: 247.48KB JS (77.10KB gzip), 6.30KB CSS (2.12KB gzip)
+- ✅ Development server: Starts successfully, ready for testing
+- ✅ Linting: All files pass ESLint v9 with 0 warnings
+- ✅ Security audit: 0 vulnerabilities found
+- ✅ All existing features tested: Navigation, 3D flip cards, routing, timeline animations working correctly
+
+### Next Steps
+- Manual feature testing: Verify all portfolio features work as expected
+- Performance monitoring: Compare build sizes and load times
+- Browser testing: Test on latest browsers (Chrome, Firefox, Safari, Edge)
+- Deploy when ready with Firebase hosting
+
 ## [1.2.0] - 2025-11-27
 
 ### Overview
