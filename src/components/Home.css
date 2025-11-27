@@ -15,7 +15,15 @@ body {
 
 /* Navigation */
 nav {
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 4px solid #faeb99;
+}
+
+/* Navbar active state indicator */
+.nav-active {
+  text-decoration: underline;
+  text-decoration-color: #5d5846;
+  text-decoration-thickness: 4px;
+  text-underline-offset: 4px;
 }
 
 /* Scrollbar styling */

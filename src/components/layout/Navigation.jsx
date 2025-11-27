@@ -63,14 +63,14 @@ function Navigation() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-white h-[122px] flex items-center px-12 border-b-4 border-[#faeb99] z-50">
+    <nav className="fixed top-0 left-0 right-0 bg-white h-[122px] flex items-center px-12 z-50">
       <div className="flex gap-12 text-3xl font-montserrat font-normal items-center">
         {/* Home Link */}
         <Link
           to="/"
           className={`tracking-wider transition ${
             activeSection === 'home' && isHome
-              ? 'underline decoration-[#5d5846] decoration-4 underline-offset-4'
+              ? 'nav-active'
               : 'hover:opacity-70'
           }`}
         >
@@ -87,7 +87,7 @@ function Navigation() {
             onClick={() => scrollToSection('projects')}
             className={`flex items-center gap-2 transition ${
               activeSection === 'projects' || isProjectPage
-                ? 'underline decoration-[#5d5846] decoration-4 underline-offset-4'
+                ? 'nav-active'
                 : 'hover:opacity-70'
             }`}
           >
@@ -130,7 +130,7 @@ function Navigation() {
           onClick={() => scrollToSection('about')}
           className={`transition text-left ${
             activeSection === 'about' && isHome
-              ? 'underline decoration-[#5d5846] decoration-4 underline-offset-4'
+              ? 'nav-active'
               : 'hover:opacity-70'
           }`}
         >
