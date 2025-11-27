@@ -54,9 +54,9 @@ const images = {
 // Navigation component
 function Navigation() {
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-white h-[122px] flex items-center justify-between px-12 shadow-sm z-50">
-      <div className="text-3xl font-montserrat font-normal tracking-wider">Home</div>
-      <div className="flex gap-12 text-3xl font-montserrat font-normal">
+    <nav className="fixed top-0 left-0 right-0 bg-white h-[122px] flex items-center px-12 shadow-sm z-50">
+      <div className="flex gap-12 text-3xl font-montserrat font-normal items-center">
+        <div className="tracking-wider">Home</div>
         <a href="#projects" className="hover:underline transition">Projects</a>
         <a href="#about" className="hover:underline transition">About me</a>
       </div>
