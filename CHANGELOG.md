@@ -2,6 +2,95 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.0] - 2025-11-27
+
+### Overview
+Multi-page routing implementation with dedicated case study pages for 6 projects and dynamic navigation dropdown menu.
+
+### Added
+- **Multi-Page Routing**: Implemented react-router-dom v6 for client-side navigation
+  - Home page (/) - Main portfolio landing with projects grid, about section, and skills
+  - 6 dedicated case study pages with routes:
+    - `/projects/pairup-events` - Social platform for pairs
+    - `/projects/xing-email-newsletter` - XING Newsletter series
+    - `/projects/xing-private-profile` - XING Mehub private profile
+    - `/projects/xing-culture-check` - XING Culture Check tool
+    - `/projects/freely` - Weather web application
+    - `/projects/yuu-skydive` - YUU Skydiving website
+
+### Components & Architecture
+- **Layout Components**:
+  - `Navigation.jsx` - Fixed navbar with Projects dropdown menu
+  - `SideNavigation.jsx` - Right sidebar with smart cross-page navigation
+
+- **Home Components** (Extracted from monolithic Home.jsx):
+  - `Badge.jsx` - Reusable tag/badge component
+  - `ProjectCard.jsx` - Project card with routing links
+  - `AboutMeTimeline.jsx` - Timeline with scroll detection
+
+- **Case Study Components**:
+  - `CaseStudyTemplate.jsx` - Reusable template for all case studies
+  - Individual case study components for each project
+
+- **Hooks & Data**:
+  - `useInView.js` - Extracted custom hook for intersection observer
+  - `projects.js` - Centralized project data with placeholder fields for future content
+
+### Features
+- **Projects Dropdown Menu**: Hover-activated dropdown showing all 6 case studies
+- **Smart Navigation**: Handles both same-page scrolling and cross-page navigation
+- **Placeholder Structure**: Case study pages ready for content addition
+- **Dynamic Project Data**: Single source of truth for all project information
+- **Responsive Design**: SideNavigation hidden on mobile devices, preserved on desktop
+- **Preserved Functionality**: All existing home page features maintained
+
+### Dependencies
+- Added: `react-router-dom@6` - Modern routing library with hooks support
+
+### File Structure Updates
+```
+src/
+├── components/
+│   ├── Home.jsx                    (REFACTORED)
+│   ├── layout/
+│   │   ├── Navigation.jsx          (NEW)
+│   │   └── SideNavigation.jsx      (NEW)
+│   ├── home/
+│   │   ├── Badge.jsx              (NEW - extracted)
+│   │   ├── ProjectCard.jsx        (NEW - extracted)
+│   │   └── AboutMeTimeline.jsx    (NEW - extracted)
+│   └── projects/
+│       ├── CaseStudyTemplate.jsx  (NEW)
+│       ├── PairupEvents.jsx       (NEW)
+│       ├── XingEmailNewsletter.jsx (NEW)
+│       ├── XingPrivateProfile.jsx  (NEW)
+│       ├── XingCultureCheck.jsx    (NEW)
+│       ├── Freely.jsx             (NEW)
+│       └── YuuSkydive.jsx         (NEW)
+├── data/
+│   └── projects.js                (NEW)
+└── hooks/
+    └── useInView.js               (NEW)
+```
+
+### Technical Improvements
+- Extracted monolithic Home.jsx into smaller, reusable components
+- Centralized project data for easier content management
+- Improved component separation of concerns
+- BrowserRouter wrapper in main.jsx for client-side routing
+- Firebase hosting rewrites already configured for SPA routing
+
+### Build & Deploy
+- Production build: ~185KB JS (gzipped ~58KB), ~14KB CSS (gzipped ~3.85KB)
+- Firebase hosting compatible with SPA routing via rewrite rules
+- No breaking changes to existing functionality
+
+### Future Content Addition
+Case study pages are ready to accept custom content. To add content:
+1. Update `/src/data/projects.js` with overview, challenge, solution, outcome, etc.
+2. Customize individual project components for unique layouts if needed
+3. Add images to `/public` and reference in project data
+
 ## [1.0.0] - 2025-11-27
 
 ### Overview

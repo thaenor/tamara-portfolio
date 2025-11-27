@@ -1,38 +1,9 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React from 'react';
+import Badge from './home/Badge';
+import ProjectCard from './home/ProjectCard';
+import AboutMeTimeline from './home/AboutMeTimeline';
+import { projectsData } from '../data/projects';
 import './Home.css';
-
-// Custom hook to detect when element is in viewport
-const useInView = (options = {}) => {
-  const ref = useRef(null);
-  const [inView, setInView] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setInView(true);
-        // Optional: Keep it visible once it's been seen
-        // observer.unobserve(entry.target);
-      } else {
-        setInView(false);
-      }
-    }, {
-      threshold: 0.3, // Trigger when 30% of element is visible
-      ...options,
-    });
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
-    };
-  }, [options]);
-
-  return [ref, inView];
-};
 
 // Image assets from local designs folder
 const images = {
@@ -43,152 +14,11 @@ const images = {
   skill1: "/tara-presenter.png",
   skill2: "/IMG_9674 1.png",
   skill3: "/tara-conference.png",
-  projectSocialPairs: "/PairupEventsThumb.png",
-  projectNewsletterSerie: "/Xing Thumbnail.png",
-  projectWeatherApp: "/Freely thumbnail.png",
-  projectPrivateProfile: "/Mehub Thumbnail.png",
-  projectCompanyCulture: "/CCA Thumbnail.png",
-  projectSkydiving: "/YUU Skydive Thumbnail.png",
 };
-
-// Navigation component
-function Navigation() {
-  return (
-    <nav className="fixed top-0 left-0 right-0 bg-white h-[122px] flex items-center px-12 shadow-sm z-50">
-      <div className="flex gap-12 text-3xl font-montserrat font-normal items-center">
-        <div className="tracking-wider">Home</div>
-        <a href="#projects" className="hover:underline transition">Projects</a>
-        <a href="#about" className="hover:underline transition">About me</a>
-      </div>
-    </nav>
-  );
-}
-
-// Badge/Tag component
-function Badge({ text }) {
-  return (
-    <span className="bg-[#5d5846] text-white px-3 py-1 rounded text-[16px] font-montserrat font-normal whitespace-nowrap">
-      {text}
-    </span>
-  );
-}
-
-// Project card component
-function ProjectCard({ imageSrc, title, year, tags = [] }) {
-  return (
-    <div className="flex flex-col items-center">
-      <div className="text-center mb-6">
-        <h3 className="font-montserrat font-bold text-[20px] text-black mb-2">{title}</h3>
-        <p className="text-black text-[16px] font-montserrat">- {year} -</p>
-      </div>
-      <div className="w-[271px] h-[274px] rounded-full bg-white border-4 border-[#cabc84] shadow-lg overflow-hidden mb-6">
-        <img
-          src={imageSrc}
-          alt={title}
-          className="w-full h-full object-cover"
-        />
-      </div>
-      {tags.length > 0 && (
-        <div className="flex gap-2 flex-wrap justify-center">
-          {tags.map((tag, index) => (
-            <Badge key={index} text={tag} />
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
-
-// Timeline section component
-function TimelineSection({ startDate, endDate, contentRef, isVisible }) {
-  return (
-    <div className={`flex-1 flex flex-col items-center relative pb-16 ${isVisible ? '' : ''}`}>
-      <div className={`text-center font-italiana text-[40px] font-normal text-black mb-4 transition-opacity duration-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-        {startDate}
-      </div>
-      <div className={`flex-1 w-1 bg-black transition-opacity duration-500 relative ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-        <div className="absolute -left-2 top-0 w-5 h-5 bg-black rounded-full"></div>
-        <div className="absolute -left-2 bottom-0 w-5 h-5 bg-black rounded-full"></div>
-      </div>
-      <div className={`text-center font-italiana text-[40px] font-normal text-black mt-4 transition-opacity duration-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-        {endDate}
-      </div>
-    </div>
-  );
-}
-
-// About Me Timeline Component with Scroll Detection
-function AboutMeTimeline({ images }) {
-  // Refs for content sections
-  const [travelRef, travelInView] = useInView({ threshold: 0.4 });
-  const [pandemicRef, pandemicInView] = useInView({ threshold: 0.4 });
-  const [careerRef, careerInView] = useInView({ threshold: 0.4 });
-
-  return (
-    <div className="relative">
-      {/* Timeline Rail */}
-      <div className="absolute left-0 top-0 bottom-0 w-32 flex flex-col">
-        <TimelineSection startDate="2014" endDate="2022" isVisible={travelInView} />
-        <TimelineSection startDate="2020" endDate="2022" isVisible={pandemicInView} />
-        <TimelineSection startDate="2022" endDate="Today" isVisible={careerInView} />
-      </div>
-
-      {/* Content Card */}
-      <div className="bg-white rounded-[20px] p-12 shadow-lg opacity-80 ml-32">
-        {/* Travel Industry - Horizontal Layout */}
-        <div ref={travelRef} className="mb-16 flex gap-8 items-stretch">
-          <img src={images.travelIndustry} alt="Travel" className="w-40 h-auto rounded-[5px] object-contain flex-shrink-0 -ml-12" />
-          <div className="flex-1 flex flex-col justify-center">
-            <h3 className="text-[20px] font-montserrat font-bold mb-4">Travel industry ✈️</h3>
-            <p className="text-[20px] font-montserrat text-gray-700 leading-relaxed">
-              Before becoming a designer, I spent years working in the travel industry as an airline supervisor for Lufthansa.
-            </p>
-          </div>
-          <img src={images.skill3} alt="Agent" className="w-48 h-auto rounded-[5px] object-contain flex-shrink-0" />
-        </div>
-
-        {/* Corona Pandemic - Vertical Layout */}
-        <div ref={pandemicRef} className="mb-16">
-          <h3 className="text-[20px] font-montserrat font-bold mb-4">Corona pandemic 🌍</h3>
-          <p className="text-[20px] font-montserrat text-gray-700 leading-relaxed mb-8">
-            When the pandemic hit, I realized that the cards were being reshuffled, and it was the perfect time for a change.
-          </p>
-          <img src={images.pandemic} alt="Pandemic" className="w-96 h-auto rounded-[5px] object-contain" />
-        </div>
-
-        {/* Career Change - Vertical Layout */}
-        <div ref={careerRef}>
-          <h3 className="text-[20px] font-montserrat font-bold mb-4">Successful career change</h3>
-          <p className="text-[20px] font-montserrat text-gray-700 leading-relaxed mb-8">
-            I used that period to transition into a design career, driven by my passion and curiosity. I believe in seizing every opportunity to grow and expand experiences.
-          </p>
-          <img src={images.careerChange} alt="Career" className="w-48 h-auto rounded-[20px] object-contain" />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// Side Navigation component
-function SideNavigation() {
-  return (
-    <aside className="fixed right-8 top-[122px] hidden lg:block w-[200px] h-[280px] bg-white bg-opacity-70 rounded-[20px] shadow-lg p-6 z-40">
-      <nav className="flex flex-col gap-6">
-        <a href="#home" className="text-3xl font-montserrat font-normal hover:opacity-70">Home</a>
-        <a href="#projects" className="text-3xl font-montserrat font-normal hover:opacity-70">Projects</a>
-        <div className="flex flex-col gap-2">
-          <a href="#about" className="text-3xl font-montserrat font-normal hover:opacity-70">About me</a>
-          <div className="w-[150px] h-[9px] bg-[#f6f5f1] rounded"></div>
-        </div>
-      </nav>
-    </aside>
-  );
-}
 
 export default function Home() {
   return (
-    <div className="w-full min-h-screen bg-white" id="home">
-      <Navigation />
+    <div className="w-full min-h-screen bg-white pt-[122px]" id="home">
 
       {/* Hero Section */}
       <section className="pt-[122px] bg-[#faeb99] px-12 py-20">
@@ -249,54 +79,17 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           {/* Projects Grid - 3 columns, 2 rows */}
           <div className="grid grid-cols-3 gap-20 justify-center">
-            <div className="flex justify-center">
-              <ProjectCard
-                imageSrc={images.projectSocialPairs}
-                title="Social platform for pairs"
-                year="2025"
-                tags={["PairupEvents", "Design", "UX/UI"]}
-              />
-            </div>
-            <div className="flex justify-center">
-              <ProjectCard
-                imageSrc={images.projectNewsletterSerie}
-                title="Newsletter serie"
-                year="2024"
-                tags={["XING", "Content", "Design"]}
-              />
-            </div>
-            <div className="flex justify-center">
-              <ProjectCard
-                imageSrc={images.projectWeatherApp}
-                title="Weather web application"
-                year="2023"
-                tags={["Freely", "App", "Design"]}
-              />
-            </div>
-            <div className="flex justify-center">
-              <ProjectCard
-                imageSrc={images.projectPrivateProfile}
-                title="Your private profile"
-                year="2023"
-                tags={["Mehub", "UX/UI", "Design"]}
-              />
-            </div>
-            <div className="flex justify-center">
-              <ProjectCard
-                imageSrc={images.projectCompanyCulture}
-                title="Your company culture"
-                year="2022"
-                tags={["CCA", "Culture", "Design"]}
-              />
-            </div>
-            <div className="flex justify-center">
-              <ProjectCard
-                imageSrc={images.projectSkydiving}
-                title="Skydiving website"
-                year="2022"
-                tags={["YUU", "Sports", "Design"]}
-              />
-            </div>
+            {projectsData.map((project) => (
+              <div key={project.id} className="flex justify-center">
+                <ProjectCard
+                  imageSrc={project.thumbnail}
+                  title={project.title}
+                  year={project.year}
+                  tags={project.tags}
+                  slug={project.slug}
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>
