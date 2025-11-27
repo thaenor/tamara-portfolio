@@ -1,17 +1,17 @@
 import React from 'react';
 import useInView from '../../hooks/useInView';
 
-function TimelineSection({ startDate, endDate, isVisible }) {
+function TimelineSection({ startDate, endDate, isVisible, isFirst = false }) {
   return (
     <div className={`flex-1 flex flex-col items-center relative pb-16 ${isVisible ? '' : ''}`}>
-      <div className={`text-center font-italiana text-[40px] font-normal text-black mb-4 transition-opacity duration-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+      <div className={`text-center font-montserrat text-[24px] font-normal text-black mb-4 transition-opacity duration-500 ${isFirst ? 'pt-12' : ''} ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
         {startDate}
       </div>
       <div className={`flex-1 w-1 bg-black transition-opacity duration-500 relative ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
         <div className="absolute -left-2 top-0 w-5 h-5 bg-black rounded-full"></div>
         <div className="absolute -left-2 bottom-0 w-5 h-5 bg-black rounded-full"></div>
       </div>
-      <div className={`text-center font-italiana text-[40px] font-normal text-black mt-4 transition-opacity duration-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+      <div className={`text-center font-montserrat text-[24px] font-normal text-black mt-4 transition-opacity duration-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
         {endDate}
       </div>
     </div>
@@ -27,16 +27,15 @@ function AboutMeTimeline({ images }) {
     <div className="relative">
       {/* Timeline Rail */}
       <div className="absolute left-0 top-0 bottom-0 w-32 flex flex-col">
-        <TimelineSection startDate="2014" endDate="2022" isVisible={travelInView} />
+        <TimelineSection startDate="2014" endDate="2022" isVisible={travelInView} isFirst={true} />
         <TimelineSection startDate="2020" endDate="2022" isVisible={pandemicInView} />
         <TimelineSection startDate="2022" endDate="Today" isVisible={careerInView} />
       </div>
 
       {/* Content Card */}
-      <div className="bg-white rounded-[20px] p-12 shadow-lg opacity-80 ml-32">
+      <div className="bg-white rounded-[20px] px-12 pb-12 pt-7 shadow-lg opacity-100 ml-32 mr-32">
         {/* Travel Industry - Horizontal Layout */}
         <div ref={travelRef} className="mb-16 flex gap-8 items-stretch">
-          <img src={images.travelIndustry} alt="Travel" className="w-40 h-auto rounded-[5px] object-contain flex-shrink-0 -ml-12" />
           <div className="flex-1 flex flex-col justify-center">
             <h3 className="text-[20px] font-montserrat font-bold mb-4">Travel industry ✈️</h3>
             <p className="text-[20px] font-montserrat text-gray-700 leading-relaxed">

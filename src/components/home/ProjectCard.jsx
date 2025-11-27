@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Badge from './Badge';
 
-function ProjectCard({ imageSrc, title, year, tags = [], slug }) {
+function ProjectCard({ imageSrc, backImage, title, year, tags = [], slug }) {
+  const [isFlipped, setIsFlipped] = useState(false);
+
   return (
     <Link
       to={`/projects/${slug}`}
@@ -15,13 +17,51 @@ function ProjectCard({ imageSrc, title, year, tags = [], slug }) {
         </h3>
         <p className="text-black text-[16px] font-montserrat">- {year} -</p>
       </div>
-      <div className="w-[271px] h-[274px] rounded-full bg-white border-4 border-[#cabc84] shadow-lg overflow-hidden mb-6 group-hover:border-[#5d5846] transition">
-        <img
-          src={imageSrc}
-          alt={title}
-          className="w-full h-full object-cover"
-        />
+
+      {/* 3D Flip Container */}
+      <div
+        className="w-[271px] h-[274px] relative mb-6 cursor-pointer"
+        style={{ perspective: '1000px' }}
+        onMouseEnter={() => setIsFlipped(true)}
+        onMouseLeave={() => setIsFlipped(false)}
+      >
+        {/* Flip Wrapper */}
+        <div
+          className="w-full h-full relative transition-transform duration-500"
+          style={{
+            transformStyle: 'preserve-3d',
+            transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+          }}
+        >
+          {/* Front Side */}
+          <div
+            className="w-[271px] h-[274px] rounded-full bg-white border-4 border-[#cabc84] shadow-lg overflow-hidden absolute inset-0 group-hover:border-[#5d5846] transition"
+            style={{ backfaceVisibility: 'hidden' }}
+          >
+            <img
+              src={imageSrc}
+              alt={title}
+              className="w-full h-full object-cover scale-[1.05]"
+            />
+          </div>
+
+          {/* Back Side */}
+          <div
+            className="w-[271px] h-[274px] rounded-full bg-white border-4 border-[#cabc84] shadow-lg overflow-hidden absolute inset-0 group-hover:border-[#5d5846] transition"
+            style={{
+              backfaceVisibility: 'hidden',
+              transform: 'rotateY(180deg)',
+            }}
+          >
+            <img
+              src={backImage || imageSrc}
+              alt={`${title} - Back`}
+              className="w-full h-full object-cover scale-[1.05]"
+            />
+          </div>
+        </div>
       </div>
+
       {tags.length > 0 && (
         <div className="flex gap-2 flex-wrap justify-center">
           {tags.map((tag, index) => (

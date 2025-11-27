@@ -36,17 +36,27 @@ function Navigation() {
           onMouseEnter={() => setIsDropdownOpen(true)}
           onMouseLeave={() => setIsDropdownOpen(false)}
         >
-          <button className="hover:underline transition">Projects</button>
+          <button
+            onClick={() => scrollToSection('projects')}
+            className="hover:underline transition"
+          >
+            Projects
+          </button>
 
           {isDropdownOpen && (
-            <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl min-w-[280px] py-2 z-50">
+            <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl min-w-[320px] py-2 z-50">
               {projectsData.map((project) => (
                 <Link
                   key={project.id}
                   to={`/projects/${project.slug}`}
-                  className="block px-6 py-3 text-xl font-montserrat hover:bg-[#faeb99] transition"
+                  className="flex items-center gap-3 px-6 py-3 text-xl font-montserrat hover:bg-[#faeb99] transition"
                   onClick={() => setIsDropdownOpen(false)}
                 >
+                  <img
+                    src={project.logo}
+                    alt={`${project.shortTitle} logo`}
+                    className="w-8 h-8 object-contain rounded-full"
+                  />
                   {project.shortTitle}
                 </Link>
               ))}

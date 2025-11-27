@@ -33,21 +33,21 @@ export default function Home() {
                 background: 'linear-gradient(to right, #f5f5f0, rgba(245, 245, 240, 0))'
               }}></div>
             </div>
-            <p className="text-[40px] font-italiana font-normal text-black mb-10">
+            <p className="text-[40px] font-italiana font-normal text-black mb-6">
               Product Designer (UX/UI)
             </p>
             <div className="flex gap-4 mb-16 flex-wrap">
-              <Badge text="UX/UI Design" />
-              <Badge text="User Research" />
-              <Badge text="Prototyping" />
+              <Badge text="proactive" />
+              <Badge text="motivated" />
+              <Badge text="growth mindset" />
             </div>
             <p className="text-[40px] font-italiana font-normal text-black mb-6">
               Passionate about
             </p>
             <div className="flex gap-4 flex-wrap">
-              <Badge text="Design" />
-              <Badge text="User Experience" />
-              <Badge text="Innovation" />
+              <Badge text="digital design" />
+              <Badge text="innovation" />
+              <Badge text="collaboration" />
             </div>
           </div>
           <div className="flex-1">
@@ -63,7 +63,7 @@ export default function Home() {
 
         {/* Scroll indicator */}
         <div className="text-center mt-20">
-          <p className="text-[30px] font-helvetica text-[#1f1000] mb-6">
+          <p className="text-[30px] font-montserrat text-[#1f1000] mb-6">
             Scroll for projects
           </p>
           <div className="flex justify-center animate-bounce">
@@ -83,6 +83,7 @@ export default function Home() {
               <div key={project.id} className="flex justify-center">
                 <ProjectCard
                   imageSrc={project.thumbnail}
+                  backImage={project.backImage}
                   title={project.title}
                   year={project.year}
                   tags={project.tags}
@@ -220,11 +221,11 @@ export default function Home() {
           </div>
 
           {/* Hobbies */}
-          <div className="flex flex-col items-center">
-            <h2 className="text-[80px] font-italiana font-normal text-black mb-12">
+          <div className="flex flex-col">
+            <h2 className="text-[80px] font-italiana font-normal text-black mb-0">
               Hobbies
             </h2>
-            <div className="flex justify-center w-full px-4">
+            <div className="flex w-full px-4 -mt-32">
               <img
                 src="/Hobbies.png"
                 alt="Hobbies collage"

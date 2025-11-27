@@ -2,7 +2,6 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import Navigation from './components/layout/Navigation';
-import SideNavigation from './components/layout/SideNavigation';
 import PairupEvents from './components/projects/PairupEvents';
 import XingEmailNewsletter from './components/projects/XingEmailNewsletter';
 import XingPrivateProfile from './components/projects/XingPrivateProfile';
@@ -15,7 +14,6 @@ function App() {
   return (
     <div className="App">
       <Navigation />
-      <SideNavigation />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/projects/pairup-events" element={<PairupEvents />} />
