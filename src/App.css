@@ -1,0 +1,5 @@
+/* App.css is mostly empty as we use Tailwind CSS */
+.App {
+  width: 100%;
+  min-height: 100vh;
+}

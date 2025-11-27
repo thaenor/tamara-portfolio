@@ -1,0 +1,183 @@
+/* Home Component Styles */
+
+/* Font imports are handled in index.html */
+
+/* General Styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Navigation */
+nav {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #5d5846;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #423c30;
+}
+
+/* Animations */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-bounce {
+  animation: bounce 2s infinite;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Section spacing and responsiveness */
+section {
+  scroll-margin-top: 122px;
+}
+
+/* Image optimization */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Link styles */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+/* Button styles */
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+button:hover {
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+/* Typography fixes */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+/* Utility classes */
+.font-italiana {
+  font-family: 'Italiana', serif;
+}
+
+.font-montserrat {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.font-helvetica {
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+.font-outfit {
+  font-family: 'Outfit', sans-serif;
+}
+
+/* Container max widths for better readability */
+.max-w-7xl {
+  max-width: 1200px;
+}
+
+/* Badge hover state */
+span[class*="bg-[#5d5846]"]:hover {
+  opacity: 0.9;
+}
+
+/* Hero section responsive */
+@media (max-width: 768px) {
+  section {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .grid-cols-3 {
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+  }
+
+  .grid-cols-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  h1 {
+    font-size: 2.5rem !important;
+  }
+
+  h2 {
+    font-size: 2rem !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  nav {
+    display: none;
+  }
+
+  button {
+    display: none;
+  }
+}
+
+/* Focus states for accessibility */
+a:focus,
+button:focus {
+  outline: 2px solid #5d5846;
+  outline-offset: 2px;
+}
+
+/* Smooth transitions */
+* {
+  transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+}
+
+/* Prevent layout shift */
+html {
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+}
