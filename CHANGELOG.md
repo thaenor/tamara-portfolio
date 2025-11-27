@@ -105,6 +105,25 @@ Initial CSS generation in v4 was incomplete, with 50+ utility classes missing fr
 
 **Conclusion:** Tailwind v4 CSS generation now fully operational. Portfolio styling is complete and matches design specifications.
 
+### 3D Flip Card Animation - Vendor Prefix Enhancement
+Enhanced ProjectCard.jsx 3D flip effect for better cross-browser compatibility by adding WebKit vendor prefixes:
+
+**Changes Made:**
+- Added `WebkitPerspective` to the 3D container perspective
+- Added `WebkitTransformStyle` for the preserve-3d transform style
+- Added `WebkitTransform` to both the flip wrapper and back side transforms
+- Added `WebkitBackfaceVisibility` to both front and back side elements
+
+**Why This Matters:**
+- Ensures 3D rotation effects work consistently across Safari and all Chromium-based browsers
+- The vendor prefixes provide fallback support for browsers that need the `-webkit-` prefix
+- Animation smoothness and performance optimized for all modern browsers
+
+**Result:**
+✅ 3D flip cards now animate smoothly on hover across all browsers
+✅ Both front and back sides render with proper perspective
+✅ No visual glitches or animation stuttering
+
 ## [1.2.0] - 2025-11-27
 
 ### Overview
