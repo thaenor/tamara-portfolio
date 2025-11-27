@@ -6,17 +6,17 @@ function ProjectCard({ imageSrc, backImage, title, year, tags = [], slug }) {
   const [isFlipped, setIsFlipped] = useState(false);
 
   return (
-    <Link
-      to={`/projects/${slug}`}
-      className="flex flex-col items-center group cursor-pointer no-underline"
-      style={{ textDecoration: 'none', color: 'inherit' }}
-    >
-      <div className="text-center mb-6">
-        <h3 className="font-montserrat font-bold text-[20px] text-black mb-2 group-hover:underline transition">
+    <div className="flex flex-col items-center group cursor-pointer no-underline" style={{ textDecoration: 'none', color: 'inherit' }}>
+      <Link
+        to={`/projects/${slug}`}
+        className="text-center mb-6 hover:underline transition no-underline"
+        style={{ textDecoration: 'none', color: 'inherit' }}
+      >
+        <h3 className="font-montserrat font-bold text-[20px] text-black mb-2">
           {title}
         </h3>
         <p className="text-black text-[16px] font-montserrat">- {year} -</p>
-      </div>
+      </Link>
 
       {/* 3D Flip Container */}
       <div
@@ -79,7 +79,7 @@ function ProjectCard({ imageSrc, backImage, title, year, tags = [], slug }) {
           ))}
         </div>
       )}
-    </Link>
+    </div>
   );
 }
 
