@@ -111,7 +111,7 @@ function Navigation() {
           </button>
 
           {isDropdownOpen && (
-            <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl min-w-[320px] py-2 z-50">
+            <div className="absolute top-full left-0 bg-white rounded-lg shadow-xl min-w-[320px] py-2 z-50">
               {projectsData.map((project) => (
                 <Link
                   key={project.id}
