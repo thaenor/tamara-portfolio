@@ -47,7 +47,7 @@ nav {
 }
 
 .animate-bounce {
-  animation: bounce 2s infinite;
+  animation: bounce 0.5s infinite;
 }
 
 /* Smooth scrolling */
