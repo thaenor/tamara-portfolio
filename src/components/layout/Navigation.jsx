@@ -69,6 +69,11 @@ function Navigation() {
         {/* Home Link */}
         <Link
           to="/"
+          onClick={() => {
+            if (isHome) {
+              scrollToSection('home');
+            }
+          }}
           className={`tracking-wider transition ${
             activeSection === 'home' && isHome
               ? 'nav-active'
