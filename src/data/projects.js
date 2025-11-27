@@ -108,7 +108,7 @@ export const projectsData = [
     tags: ['Discovery', 'UX'],
     thumbnail: '/YUU Skydive Thumbnail.png',
     backImage: '/YUU Skydive Thumbnail.png',
-    logo: '/logos/yuu-logo.png',
+    logo: '/Logos/yuu-logo.png',
     description: 'Website redesign for YUU skydiving center.',
     overview: '',
     challenge: '',
