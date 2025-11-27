@@ -8,7 +8,7 @@ export const projectsData = [
     tags: ['Discovery', 'UX/UI', 'Development'],
     thumbnail: '/PairupEventsThumb.png',
     backImage: '/PairupEventsThumb.png',
-    logo: '/logos/pairup-events-logo.png',
+    logo: '/Logos/pairup-events-logo.png',
     description: 'A social platform designed for pairs to discover and participate in events together.',
     overview: '',
     challenge: '',
