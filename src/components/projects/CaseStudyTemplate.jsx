@@ -117,10 +117,10 @@ function CaseStudyTemplate({ project }) {
             className="flex flex-col items-center gap-4 cursor-pointer group"
           >
             <div
-              className="w-16 h-16 rounded-full flex items-center justify-center transition group-hover:opacity-80"
+              className="w-16 h-16 rounded-full flex items-center justify-center transition group-hover:opacity-80 shadow-lg"
               style={{ backgroundColor: project.backgroundColor }}
             >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2">
                 <path d="M15 19l-7-7 7-7"/>
               </svg>
             </div>
@@ -135,10 +135,10 @@ function CaseStudyTemplate({ project }) {
             className="flex flex-col items-center gap-4 cursor-pointer group"
           >
             <div
-              className="w-16 h-16 rounded-full flex items-center justify-center transition group-hover:opacity-80"
+              className="w-16 h-16 rounded-full flex items-center justify-center transition group-hover:opacity-80 shadow-lg"
               style={{ backgroundColor: project.backgroundColor }}
             >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2">
                 <path d="M9 5l7 7-7 7"/>
               </svg>
             </div>
