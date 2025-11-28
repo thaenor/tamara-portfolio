@@ -18,7 +18,7 @@ export const projectsData = [
     role: '',
     duration: '',
     tools: [],
-    backgroundColor: '#FF6B6B',
+    backgroundColor: '#F5E6C8',
   },
   {
     id: 'xing-email-newsletter',
