@@ -19,6 +19,7 @@ export const projectsData = [
     role: 'I founded PairUp Events, led research and UX strategy, designed the experience end to end and coded the first MVP using a vibe-driven approach.',
     duration: 'May 2025 - today',
     tools: [],
+    website: 'www.pairup-events.com',
     backgroundColor: '#F5E6C8',
   },
   {
