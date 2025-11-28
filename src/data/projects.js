@@ -86,6 +86,7 @@ export const projectsData = [
     duration: '',
     tools: [],
     backgroundColor: '#A8E6CF',
+    badgeLabel: 'Re-design',
   },
   {
     id: 'xing-culture-check',
