@@ -118,9 +118,17 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           {/* Soft Skills */}
           <div className="mb-24">
-            <h2 className="text-[80px] font-italiana font-normal text-black mb-8">
-              Soft skills
-            </h2>
+            <div className="flex items-center gap-4 mb-8">
+              <div className="relative flex items-center justify-center">
+                <div className="absolute w-[200px] h-[200px] bg-white rounded-full"></div>
+                <h2 className="text-[80px] font-italiana font-normal text-black relative z-10">
+                  Soft
+                </h2>
+              </div>
+              <h2 className="text-[80px] font-italiana font-normal text-black">
+                skills
+              </h2>
+            </div>
             <div className="flex gap-4 mb-8 flex-wrap">
               <Badge text="presenting" />
               <Badge text="pro-activity" />
