@@ -41,7 +41,7 @@ function AboutMeTimeline({ images }) {
               Before becoming a designer, I spent years working in the travel industry as an airline supervisor for Lufthansa.
             </p>
           </div>
-          <img src={images.skill3} alt="Agent" className="w-48 h-auto rounded-[5px] object-contain flex-shrink-0" />
+          <img src={images.travelIndustry} alt="Agent" className="w-48 h-auto rounded-[5px] object-contain flex-shrink-0" />
         </div>
 
         {/* Corona Pandemic - Vertical Layout */}
