@@ -13,7 +13,7 @@ export const projectsData = [
     description: 'A social platform designed for pairs to discover and participate in events together.',
     overview: '',
     challenge: 'Many people crave new experiences and real-life connection, but routines, social friction and the discomfort of going alone stop them from taking action.',
-    solution: 'The solution is pair-based and centers on shared experiences. The platform allows any type of pair - friends, couples or acquaintances- to join or create events together. An agentic, guided flow actively supports users through key decisions, reducing friction while improving confidence, experience quality and more intentional matchmaking.',
+    solution: 'The solution is a web app. It is pair-based and centers on shared experiences. The platform allows any type of pair - friends, couples or acquaintances- to join or create events together. An agentic, guided flow actively supports users through key decisions, reducing friction while improving confidence, experience quality and more intentional matchmaking.',
     outcome: '',
     images: [],
     role: 'I founded PairUp Events, led research and UX strategy, designed the experience end to end and coded the first MVP using a vibe-driven approach.',
