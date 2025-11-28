@@ -1,9 +1,8 @@
-import React from 'react';
 import useInView from '../../hooks/useInView';
 
-function TimelineSection({ startDate, endDate, isVisible, isFirst = false, contentHeight = 'auto' }) {
+function TimelineSection({ startDate, endDate, isVisible, isFirst = false }) {
   return (
-    <div className={`flex flex-col items-center relative ${isVisible ? '' : ''}`} style={{ height: contentHeight }}>
+    <div className={`flex-1 flex flex-col items-center relative pb-16 ${isVisible ? '' : ''}`}>
       <div className={`text-center font-montserrat text-[24px] font-normal text-black mb-4 transition-opacity duration-500 ${isFirst ? 'pt-12' : ''} ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
         {startDate}
       </div>
@@ -22,27 +21,13 @@ function AboutMeTimeline({ images }) {
   const [travelRef, travelInView] = useInView({ threshold: 0.4 });
   const [pandemicRef, pandemicInView] = useInView({ threshold: 0.4 });
   const [careerRef, careerInView] = useInView({ threshold: 0.4 });
-  const [travelHeight, setTravelHeight] = React.useState('auto');
-  const [pandemicHeight, setPandemicHeight] = React.useState('auto');
-
-  React.useEffect(() => {
-    if (travelRef && travelRef.current) {
-      setTravelHeight(`${travelRef.current.offsetHeight}px`);
-    }
-  }, [travelRef]);
-
-  React.useEffect(() => {
-    if (pandemicRef && pandemicRef.current) {
-      setPandemicHeight(`${pandemicRef.current.offsetHeight}px`);
-    }
-  }, [pandemicRef]);
 
   return (
     <div className="relative">
       {/* Timeline Rail */}
       <div className="absolute left-0 top-0 bottom-0 w-32 flex flex-col">
-        <TimelineSection startDate="2014" endDate="2022" isVisible={travelInView} isFirst={true} contentHeight={travelHeight} />
-        <TimelineSection startDate="2020" endDate="2022" isVisible={pandemicInView} contentHeight={pandemicHeight} />
+        <TimelineSection startDate="2014" endDate="2022" isVisible={travelInView} isFirst={true} />
+        <TimelineSection startDate="2020" endDate="2022" isVisible={pandemicInView} />
         <TimelineSection startDate="2022" endDate="Today" isVisible={careerInView} />
       </div>
 
