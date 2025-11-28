@@ -106,7 +106,7 @@ function CaseStudyTemplate({ project }) {
           </div>
 
           {/* Right Column - Visuals */}
-          <div className="col-span-1 flex flex-col justify-between">
+          <div className="col-span-1 space-y-8">
             {project.heroImage && (
               <div>
                 <img
@@ -117,7 +117,7 @@ function CaseStudyTemplate({ project }) {
               </div>
             )}
             {project.secondaryImage && (
-              <div className="mt-auto">
+              <div>
                 <img
                   src={project.secondaryImage}
                   alt={`${project.title} secondary`}
