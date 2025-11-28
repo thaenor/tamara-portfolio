@@ -108,7 +108,7 @@ function CaseStudyTemplate({ project }) {
           {/* Right Column - Visuals */}
           <div className="col-span-1">
             {project.heroImage && (
-              <div className="sticky top-[140px]">
+              <div>
                 <img
                   src={project.heroImage}
                   alt={project.title}
