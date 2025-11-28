@@ -21,6 +21,7 @@ export const projectsData = [
     tools: [],
     website: 'https://www.pairup-events.com/',
     backgroundColor: '#F5E6C8',
+    heroImage: '/PairUpProblem.jpg',
   },
   {
     id: 'xing-email-newsletter',

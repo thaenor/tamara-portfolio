@@ -107,14 +107,15 @@ function CaseStudyTemplate({ project }) {
 
           {/* Right Column - Visuals */}
           <div className="col-span-1">
-            {/* Project Thumbnail */}
-            <div className="sticky top-[140px]">
-              <img
-                src={project.thumbnail}
-                alt={project.title}
-                className="w-full h-auto rounded-[20px] shadow-xl object-cover"
-              />
-            </div>
+            {project.heroImage && (
+              <div className="sticky top-[140px]">
+                <img
+                  src={project.heroImage}
+                  alt={project.title}
+                  className="w-full h-auto rounded-[20px] shadow-xl object-cover"
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>
