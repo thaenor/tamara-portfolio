@@ -34,7 +34,7 @@ function AboutMeTimeline({ images }) {
       {/* Content Card */}
       <div className="bg-white rounded-[20px] px-12 pb-12 pt-7 shadow-lg opacity-100 ml-32 mr-32">
         {/* Travel Industry - Horizontal Layout */}
-        <div ref={travelRef} className="mb-16 flex gap-8 items-stretch">
+        <div ref={travelRef} className="flex gap-8 items-stretch" style={{ marginBottom: '94px' }}>
           <div className="flex-1 flex flex-col justify-center">
             <h3 className="text-[20px] font-montserrat font-bold mb-4">Travel industry ✈️</h3>
             <p className="text-[20px] font-montserrat text-gray-700 leading-relaxed">
