@@ -12,7 +12,7 @@ export const projectsData = [
     logo: '/Logos/pairup-events-logo.png',
     description: 'A social platform designed for pairs to discover and participate in events together.',
     overview: '',
-    challenge: '',
+    challenge: 'Many people crave new experiences and real-life connection, but routines, social friction and the discomfort of going alone stop them from taking action.',
     solution: '',
     outcome: '',
     images: [],
