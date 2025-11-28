@@ -85,7 +85,7 @@ function CaseStudyTemplate({ project }) {
                 <h2 className="text-[32px] font-montserrat font-bold text-black mb-6">
                   Time frame
                 </h2>
-                <p className="text-[18px] font-montserrat text-gray-700 mb-4">
+                <p className="text-[18px] font-montserrat text-gray-700 mb-8">
                   {project.duration || '[Duration will be added here]'}
                 </p>
                 {project.website && (
