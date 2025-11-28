@@ -7,7 +7,7 @@ import './Home.css';
 // Image assets from local designs folder
 const images = {
   tamaraProfile: "/me.png",
-  travelIndustry: "/airport-me.png",
+  travelIndustry: "/Taraoffice.png",
   pandemic: "/office-tara.png",
   careerChange: "/Tara - about me.png",
   skill1: "/tara-presenter.png",
