@@ -38,15 +38,6 @@ function CaseStudyTemplate({ project }) {
             </div>
           </div>
 
-          {/* Year and Tags */}
-          <p className="text-[40px] font-italiana font-normal text-black mb-8">
-            - {project.year} -
-          </p>
-          <div className="flex gap-4 mb-8 flex-wrap">
-            {project.tags.map((tag, index) => (
-              <Badge key={index} text={tag} />
-            ))}
-          </div>
         </div>
       </div>
 
