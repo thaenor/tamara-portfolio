@@ -5,6 +5,8 @@ import { projectsData } from '../../data/projects';
 function CaseStudyTemplate({ project }) {
   const navigate = useNavigate();
 
+  const handleBackClick = () => window.history.back();
+
   // Find previous and next projects for navigation
   const currentIndex = projectsData.findIndex(p => p.slug === project.slug);
   const previousProject = currentIndex > 0 ? projectsData[currentIndex - 1] : projectsData[projectsData.length - 1];
@@ -19,11 +21,11 @@ function CaseStudyTemplate({ project }) {
       <div className="pt-[122px] pb-12">
         <div className="max-w-7xl mx-auto px-12">
           <div className="flex items-center gap-4 mb-8">
-            <a href="/" className="inline-flex items-center justify-center w-10 h-10 text-black hover:opacity-70 transition">
+            <button onClick={handleBackClick} className="inline-flex items-center justify-center w-10 h-10 text-black hover:opacity-70 transition">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M15 19l-7-7 7-7"/>
               </svg>
-            </a>
+            </button>
             <h1 className="text-[80px] font-italiana font-normal text-black">
               {project.title}
             </h1>
