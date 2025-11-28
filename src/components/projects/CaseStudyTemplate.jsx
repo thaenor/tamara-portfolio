@@ -26,7 +26,7 @@ function CaseStudyTemplate({ project }) {
                 <path d="M15 19l-7-7 7-7"/>
               </svg>
             </button>
-            <h1 className="text-[80px] font-italiana font-normal text-black">
+            <h1 className="text-[80px] font-montserrat font-bold text-black">
               {project.title}
             </h1>
           </div>
