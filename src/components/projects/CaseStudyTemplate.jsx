@@ -50,7 +50,7 @@ function CaseStudyTemplate({ project }) {
               {/* Problem Section */}
               <div className="mb-12">
                 <div className="flex items-center gap-3 mb-6">
-                  <Badge text="Re-design" />
+                  <Badge text="built from scratch" />
                 </div>
                 <h2 className="text-[32px] font-montserrat font-bold text-black mb-6">
                   Problem
