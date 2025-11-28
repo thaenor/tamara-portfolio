@@ -97,7 +97,7 @@ function CaseStudyTemplate({ project }) {
                       rel="noopener noreferrer"
                       className="text-[18px] font-montserrat text-gray-700 hover:text-black transition"
                     >
-                      {project.website}
+                      www.pairup-events.com
                     </a>
                   </div>
                 )}
