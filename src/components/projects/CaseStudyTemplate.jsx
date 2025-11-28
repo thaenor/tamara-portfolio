@@ -94,57 +94,15 @@ function CaseStudyTemplate({ project }) {
             </div>
           </div>
 
-          {/* Right Column - Visuals & Sidebar */}
+          {/* Right Column - Visuals */}
           <div className="col-span-1">
             {/* Project Thumbnail */}
-            <div className="mb-8 sticky top-[140px]">
+            <div className="sticky top-[140px]">
               <img
                 src={project.thumbnail}
                 alt={project.title}
                 className="w-full h-auto rounded-[20px] shadow-xl object-cover"
               />
-            </div>
-
-            {/* Sidebar Navigation */}
-            <div className="bg-white rounded-[20px] p-6">
-              <div className="space-y-6">
-                {/* Home Link */}
-                <div>
-                  <a href="/" className="text-[18px] font-montserrat font-bold text-black hover:opacity-70 transition">
-                    Home
-                  </a>
-                </div>
-
-                {/* Projects List */}
-                <div>
-                  <h3 className="text-[18px] font-montserrat font-bold text-black mb-4">
-                    Projects
-                  </h3>
-                  <ul className="space-y-3">
-                    {projectsData.map((p) => (
-                      <li key={p.id}>
-                        <a
-                          href={`/projects/${p.slug}`}
-                          className={`text-[14px] font-montserrat transition ${
-                            p.slug === project.slug
-                              ? 'text-black font-bold'
-                              : 'text-gray-600 hover:text-black'
-                          }`}
-                        >
-                          {p.shortTitle}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* About Me Link */}
-                <div className="pt-4 border-t border-gray-200">
-                  <a href="/" className="text-[18px] font-montserrat font-bold text-black hover:opacity-70 transition">
-                    About me
-                  </a>
-                </div>
-              </div>
             </div>
           </div>
         </div>
