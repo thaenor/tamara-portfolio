@@ -118,7 +118,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           {/* Soft Skills */}
           <div className="mb-24 relative">
-            <div className="absolute -top-20 -left-40 w-[400px] h-[400px] bg-white rounded-full"></div>
+            <div className="absolute -top-20 -left-40 w-[400px] h-[400px] bg-white rounded-full -z-10"></div>
             <div className="flex items-center gap-4 mb-8">
               <h2 className="text-[80px] font-italiana font-normal text-black">
                 Soft
