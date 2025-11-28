@@ -1,103 +1,199 @@
+import { useNavigate } from 'react-router-dom';
 import Badge from '../home/Badge';
+import { projectsData } from '../../data/projects';
 
-function CaseStudyTemplate({ project, children }) {
+function CaseStudyTemplate({ project }) {
+  const navigate = useNavigate();
+
+  // Find previous and next projects for navigation
+  const currentIndex = projectsData.findIndex(p => p.slug === project.slug);
+  const previousProject = currentIndex > 0 ? projectsData[currentIndex - 1] : projectsData[projectsData.length - 1];
+  const nextProject = currentIndex < projectsData.length - 1 ? projectsData[currentIndex + 1] : projectsData[0];
+
+  const handlePreviousClick = () => navigate(`/projects/${previousProject.slug}`);
+  const handleNextClick = () => navigate(`/projects/${nextProject.slug}`);
+
   return (
-    <div className="w-full min-h-screen bg-white pt-[122px]">
-      {/* Hero Section */}
-      <section className="bg-[#faeb99] px-12 py-20">
-        <div className="max-w-7xl mx-auto">
-          {/* Breadcrumb */}
-          <div className="mb-8">
-            <a href="/" className="text-lg font-montserrat text-gray-700 hover:underline">Home</a>
-            <span className="mx-2 text-gray-700">/</span>
-            <span className="text-lg font-montserrat text-black font-bold">
-              {project.shortTitle}
-            </span>
+    <div className="w-full min-h-screen" style={{ backgroundColor: project.backgroundColor }}>
+      {/* Header with back button and title */}
+      <div className="pt-[122px] pb-12">
+        <div className="max-w-7xl mx-auto px-12">
+          <div className="flex items-center gap-4 mb-8">
+            <a href="/" className="inline-flex items-center justify-center w-10 h-10 text-black hover:opacity-70 transition">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M15 19l-7-7 7-7"/>
+              </svg>
+            </a>
+            <h1 className="text-[80px] font-italiana font-normal text-black">
+              {project.title}
+            </h1>
           </div>
 
-          {/* Title & Year */}
-          <h1 className="text-[80px] font-italiana font-normal text-black mb-4">
-            {project.title}
-          </h1>
+          {/* Year and Tags */}
           <p className="text-[40px] font-italiana font-normal text-black mb-8">
             - {project.year} -
           </p>
-
-          {/* Tags */}
-          <div className="flex gap-4 mb-12 flex-wrap">
+          <div className="flex gap-4 mb-8 flex-wrap">
             {project.tags.map((tag, index) => (
               <Badge key={index} text={tag} />
             ))}
           </div>
-
-          {/* Thumbnail */}
-          <div className="max-w-4xl mx-auto">
-            <img
-              src={project.thumbnail}
-              alt={project.title}
-              className="w-full h-auto rounded-[20px] shadow-xl"
-            />
-          </div>
         </div>
-      </section>
+      </div>
 
-      {/* Content Section - Placeholder */}
-      <section className="bg-[#faeb99] px-12 py-20">
-        <div className="max-w-7xl mx-auto">
-          {children || (
-            <div className="bg-white bg-opacity-70 rounded-[20px] p-12 text-center">
-              <h2 className="text-[40px] font-italiana font-normal text-black mb-6">
-                Case Study Content Coming Soon
-              </h2>
-              <p className="text-[20px] font-montserrat text-gray-700 mb-8">
-                {project.description}
-              </p>
-              <div className="space-y-8">
-                <div>
-                  <h3 className="text-[24px] font-montserrat font-bold mb-4">Overview</h3>
-                  <p className="text-[18px] font-montserrat text-gray-600">
-                    [Project overview will be added here]
-                  </p>
+      {/* Main Content Section */}
+      <div className="max-w-7xl mx-auto px-12 pb-20">
+        <div className="grid grid-cols-3 gap-8">
+          {/* Left Column - Content */}
+          <div className="col-span-2">
+            <div className="bg-white rounded-[20px] p-12">
+              {/* Problem Section */}
+              <div className="mb-12">
+                <div className="flex items-center gap-3 mb-6">
+                  <Badge text="Re-design" />
                 </div>
+                <h2 className="text-[32px] font-montserrat font-bold text-black mb-6">
+                  Problem
+                </h2>
+                <p className="text-[18px] font-montserrat text-gray-700 leading-relaxed mb-4">
+                  {project.challenge || '[Problem description will be added here]'}
+                </p>
+              </div>
+
+              {/* My Role Section */}
+              <div className="mb-12">
+                <h2 className="text-[32px] font-montserrat font-bold text-black mb-6">
+                  My role
+                </h2>
+                <p className="text-[18px] font-montserrat text-gray-700 leading-relaxed mb-4">
+                  {project.role || '[Your role description will be added here]'}
+                </p>
+              </div>
+
+              {/* Solution Section */}
+              <div className="mb-12">
+                <h2 className="text-[32px] font-montserrat font-bold text-black mb-6">
+                  Solution
+                </h2>
+                <p className="text-[18px] font-montserrat text-gray-700 leading-relaxed mb-4">
+                  {project.solution || '[Solution details will be added here]'}
+                </p>
+              </div>
+
+              {/* Time Frame Section */}
+              <div>
+                <h2 className="text-[32px] font-montserrat font-bold text-black mb-6">
+                  Time frame
+                </h2>
+                <p className="text-[18px] font-montserrat text-gray-700">
+                  {project.duration || '[Duration will be added here]'}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column - Visuals & Sidebar */}
+          <div className="col-span-1">
+            {/* Project Thumbnail */}
+            <div className="mb-8 sticky top-[140px]">
+              <img
+                src={project.thumbnail}
+                alt={project.title}
+                className="w-full h-auto rounded-[20px] shadow-xl object-cover"
+              />
+            </div>
+
+            {/* Sidebar Navigation */}
+            <div className="bg-white rounded-[20px] p-6">
+              <div className="space-y-6">
+                {/* Home Link */}
                 <div>
-                  <h3 className="text-[24px] font-montserrat font-bold mb-4">Challenge</h3>
-                  <p className="text-[18px] font-montserrat text-gray-600">
-                    [Challenge description will be added here]
-                  </p>
+                  <a href="/" className="text-[18px] font-montserrat font-bold text-black hover:opacity-70 transition">
+                    Home
+                  </a>
                 </div>
+
+                {/* Projects List */}
                 <div>
-                  <h3 className="text-[24px] font-montserrat font-bold mb-4">Solution</h3>
-                  <p className="text-[18px] font-montserrat text-gray-600">
-                    [Solution details will be added here]
-                  </p>
+                  <h3 className="text-[18px] font-montserrat font-bold text-black mb-4">
+                    Projects
+                  </h3>
+                  <ul className="space-y-3">
+                    {projectsData.map((p) => (
+                      <li key={p.id}>
+                        <a
+                          href={`/projects/${p.slug}`}
+                          className={`text-[14px] font-montserrat transition ${
+                            p.slug === project.slug
+                              ? 'text-black font-bold'
+                              : 'text-gray-600 hover:text-black'
+                          }`}
+                        >
+                          {p.shortTitle}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <div>
-                  <h3 className="text-[24px] font-montserrat font-bold mb-4">Outcome</h3>
-                  <p className="text-[18px] font-montserrat text-gray-600">
-                    [Results and outcomes will be added here]
-                  </p>
+
+                {/* About Me Link */}
+                <div className="pt-4 border-t border-gray-200">
+                  <a href="/" className="text-[18px] font-montserrat font-bold text-black hover:opacity-70 transition">
+                    About me
+                  </a>
                 </div>
               </div>
             </div>
-          )}
+          </div>
         </div>
-      </section>
-
-      {/* Navigation Footer */}
-      <div className="flex justify-center gap-8 py-12 bg-[#faeb99]">
-        <a
-          href="/"
-          className="px-8 py-3 bg-[#5d5846] text-white rounded-lg text-lg font-montserrat hover:opacity-80 transition"
-        >
-          Back to Home
-        </a>
       </div>
 
-      {/* Back to top */}
-      <div className="flex justify-center py-12 bg-[#faeb99]">
+      {/* Project Navigation Footer */}
+      <div className="max-w-7xl mx-auto px-12 pb-20">
+        <div className="flex justify-between items-center">
+          {/* Previous Project */}
+          <button
+            onClick={handlePreviousClick}
+            className="flex flex-col items-center gap-4 cursor-pointer group"
+          >
+            <div
+              className="w-16 h-16 rounded-full flex items-center justify-center transition group-hover:opacity-80"
+              style={{ backgroundColor: project.backgroundColor }}
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                <path d="M15 19l-7-7 7-7"/>
+              </svg>
+            </div>
+            <p className="text-center text-[16px] font-montserrat font-bold text-black">
+              Previous project
+            </p>
+          </button>
+
+          {/* Next Project */}
+          <button
+            onClick={handleNextClick}
+            className="flex flex-col items-center gap-4 cursor-pointer group"
+          >
+            <div
+              className="w-16 h-16 rounded-full flex items-center justify-center transition group-hover:opacity-80"
+              style={{ backgroundColor: project.backgroundColor }}
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                <path d="M9 5l7 7-7 7"/>
+              </svg>
+            </div>
+            <p className="text-center text-[16px] font-montserrat font-bold text-black">
+              Next project
+            </p>
+          </button>
+        </div>
+      </div>
+
+      {/* Back to Top */}
+      <div className="flex justify-center py-12">
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="flex flex-col items-center gap-2 cursor-pointer"
+          className="flex flex-col items-center gap-2 cursor-pointer text-black hover:opacity-70 transition"
         >
           <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M12 5v14M5 12l7-7 7 7"/>

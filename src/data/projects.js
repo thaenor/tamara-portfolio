@@ -18,6 +18,7 @@ export const projectsData = [
     role: '',
     duration: '',
     tools: [],
+    backgroundColor: '#FF6B6B',
   },
   {
     id: 'xing-email-newsletter',
@@ -38,6 +39,7 @@ export const projectsData = [
     role: '',
     duration: '',
     tools: [],
+    backgroundColor: '#4ECDC4',
   },
   {
     id: 'freely',
@@ -58,6 +60,7 @@ export const projectsData = [
     role: '',
     duration: '',
     tools: [],
+    backgroundColor: '#95E1D3',
   },
   {
     id: 'xing-private-profile',
@@ -78,6 +81,7 @@ export const projectsData = [
     role: '',
     duration: '',
     tools: [],
+    backgroundColor: '#A8E6CF',
   },
   {
     id: 'xing-culture-check',
@@ -98,6 +102,7 @@ export const projectsData = [
     role: '',
     duration: '',
     tools: [],
+    backgroundColor: '#FFD93D',
   },
   {
     id: 'yuu-skydive',
@@ -118,5 +123,6 @@ export const projectsData = [
     role: '',
     duration: '',
     tools: [],
+    backgroundColor: '#B8A6DB',
   },
 ];
