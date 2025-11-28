@@ -29,6 +29,11 @@ function CaseStudyTemplate({ project }) {
             <h1 className="text-[80px] font-montserrat font-bold text-black">
               {project.title}
             </h1>
+            {project.subtitle && (
+              <p className="text-[32px] font-montserrat font-normal text-gray-700 mb-8">
+                {project.subtitle}
+              </p>
+            )}
           </div>
 
           {/* Year and Tags */}

@@ -2,8 +2,9 @@ export const projectsData = [
   {
     id: 'pairup-events',
     slug: 'pairup-events',
-    title: 'Social platform for pairs',
+    title: 'PairUp Events',
     shortTitle: 'PairUp Events',
+    subtitle: 'A social platform for pairs',
     year: '2025',
     tags: ['Discovery', 'UX/UI', 'Development'],
     thumbnail: '/PairupEventsThumb.png',
