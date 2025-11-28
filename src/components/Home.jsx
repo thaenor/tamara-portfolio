@@ -117,14 +117,12 @@ export default function Home() {
       <section className="bg-[#faeb99] px-12 py-20">
         <div className="max-w-7xl mx-auto">
           {/* Soft Skills */}
-          <div className="mb-24">
+          <div className="mb-24 relative">
+            <div className="absolute -top-20 -left-40 w-[400px] h-[400px] bg-white rounded-full -z-10"></div>
             <div className="flex items-center gap-4 mb-8">
-              <div className="relative flex items-center justify-center">
-                <div className="absolute w-[200px] h-[200px] bg-white rounded-full"></div>
-                <h2 className="text-[80px] font-italiana font-normal text-black relative z-10">
-                  Soft
-                </h2>
-              </div>
+              <h2 className="text-[80px] font-italiana font-normal text-black">
+                Soft
+              </h2>
               <h2 className="text-[80px] font-italiana font-normal text-black">
                 skills
               </h2>
