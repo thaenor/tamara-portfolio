@@ -16,7 +16,7 @@ function CaseStudyTemplate({ project }) {
   const handleNextClick = () => navigate(`/projects/${nextProject.slug}`);
 
   return (
-    <div className="w-full min-h-screen" style={{ backgroundColor: project.backgroundColor }}>
+    <div className="w-full min-h-screen" style={{ background: `linear-gradient(to bottom, ${project.backgroundColor}, #FFFFFF)` }}>
       {/* Header with back button and title */}
       <div className="pt-[122px] pb-12">
         <div className="max-w-7xl mx-auto px-12">
