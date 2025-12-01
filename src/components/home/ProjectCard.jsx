@@ -19,6 +19,10 @@ function ProjectCard({ imageSrc, backImage, title, year, tags = [], slug }) {
       </Link>
 
       {/* 3D Flip Container */}
+      <Link
+        to={`/projects/${slug}`}
+        style={{ textDecoration: 'none', color: 'inherit' }}
+      >
       <div
         className="w-[271px] h-[274px] relative mb-6 cursor-pointer"
         style={{
@@ -71,6 +75,7 @@ function ProjectCard({ imageSrc, backImage, title, year, tags = [], slug }) {
           </div>
         </div>
       </div>
+      </Link>
 
       {tags.length > 0 && (
         <div className="flex gap-2 flex-wrap justify-center">

@@ -1,9 +1,15 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Badge from '../home/Badge';
 import { projectsData } from '../../data/projects';
 
 function CaseStudyTemplate({ project }) {
   const navigate = useNavigate();
+
+  // Scroll to top when component mounts or project changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [project.slug]);
 
   const handleBackClick = () => window.history.back();
 
@@ -12,28 +18,52 @@ function CaseStudyTemplate({ project }) {
   const previousProject = currentIndex > 0 ? projectsData[currentIndex - 1] : projectsData[projectsData.length - 1];
   const nextProject = currentIndex < projectsData.length - 1 ? projectsData[currentIndex + 1] : projectsData[0];
 
-  const handlePreviousClick = () => navigate(`/projects/${previousProject.slug}`);
-  const handleNextClick = () => navigate(`/projects/${nextProject.slug}`);
+  const handlePreviousClick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(() => navigate(`/projects/${previousProject.slug}`), 300);
+  };
+  const handleNextClick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(() => navigate(`/projects/${nextProject.slug}`), 300);
+  };
+
+  const backgroundStyle = project.backgroundColor.includes('gradient')
+    ? project.backgroundColor
+    : `linear-gradient(to bottom, ${project.backgroundColor}, #FFFFFF)`;
 
   return (
-    <div className="w-full min-h-screen" style={{ background: `linear-gradient(to bottom, ${project.backgroundColor}, #FFFFFF)` }}>
+    <div className="w-full min-h-screen" style={{ background: backgroundStyle }}>
       {/* Header with back button and title */}
       <div className="pt-[122px] pb-12">
         <div className="max-w-7xl mx-auto px-12" style={{ paddingTop: '40px' }}>
           <div className="flex gap-4 mb-8">
-            <button onClick={handleBackClick} className="inline-flex items-center justify-center w-10 h-10 text-black hover:opacity-70 transition flex-shrink-0" style={{ paddingTop: '50px' }}>
+            <button onClick={handleBackClick} className="inline-flex items-center justify-center w-10 h-10 hover:opacity-70 transition flex-shrink-0" style={{ paddingTop: '50px', color: project.arrowColor || '#000000' }}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M15 19l-7-7 7-7"/>
               </svg>
             </button>
-            <div>
-              <h1 className="text-[80px] font-montserrat font-bold text-black leading-tight">
-                {project.title}
-              </h1>
-              {project.subtitle && (
-                <p className="text-[32px] font-montserrat font-normal text-gray-700">
-                  {project.subtitle}
-                </p>
+            <div className="flex items-center gap-4">
+              <div>
+                <h1 className="text-[80px] font-montserrat font-bold leading-tight" style={{ color: project.headlineColor || '#000000' }}>
+                  {project.title}
+                </h1>
+                {project.subtitle && (
+                  <p className="text-[32px] font-montserrat font-normal" style={{ color: project.subtitleColor || '#666666' }}>
+                    {project.subtitle}
+                  </p>
+                )}
+                {project.tagline && (
+                  <p className="text-[24px] font-montserrat italic" style={{ color: project.taglineColor || project.subtitleColor || '#666666', marginTop: '20px' }}>
+                    {project.tagline}
+                  </p>
+                )}
+              </div>
+              {project.headerImage && (
+                <img
+                  src={project.headerImage}
+                  alt="Header decoration"
+                  className="w-32 h-32 object-contain flex-shrink-0"
+                />
               )}
             </div>
           </div>
@@ -55,9 +85,34 @@ function CaseStudyTemplate({ project }) {
                 <h2 className="text-[32px] font-montserrat font-bold text-black mb-6">
                   Problem
                 </h2>
-                <p className="text-[18px] font-montserrat text-gray-700 leading-relaxed mb-4">
-                  {project.challenge || '[Problem description will be added here]'}
-                </p>
+                <div className="text-[18px] font-montserrat text-gray-700 leading-relaxed mb-4 whitespace-pre-wrap">
+                  {project.challenge ? (
+                    <div>
+                      {project.challenge.split('\n\n').map((line, index) => {
+                        const trimmed = line.trim();
+                        const isEmojiOnly = trimmed.length > 0 && /^[^\p{L}\p{N}\p{P}]*$/u.test(trimmed.replace(/\s/g, ''));
+
+                        return (
+                          <div key={index}>
+                            {isEmojiOnly ? (
+                              <div className="text-[50px] mt-4">
+                                {line}
+                              </div>
+                            ) : (
+                              line.split('\n').map((textLine, lineIndex) => (
+                                <div key={lineIndex}>
+                                  {textLine}
+                                </div>
+                              ))
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    '[Problem description will be added here]'
+                  )}
+                </div>
               </div>
 
               {/* My Role Section */}
@@ -65,9 +120,34 @@ function CaseStudyTemplate({ project }) {
                 <h2 className="text-[32px] font-montserrat font-bold text-black mb-6">
                   My role
                 </h2>
-                <p className="text-[18px] font-montserrat text-gray-700 leading-relaxed mb-4">
-                  {project.role || '[Your role description will be added here]'}
-                </p>
+                <div className="text-[18px] font-montserrat text-gray-700 leading-relaxed mb-4 whitespace-pre-wrap">
+                  {project.role ? (
+                    <div>
+                      {project.role.split('\n\n').map((section, sectionIndex) => {
+                        const trimmed = section.trim();
+                        const isEmojiOnly = trimmed.length > 0 && /^[^\p{L}\p{N}\p{P}]*$/u.test(trimmed.replace(/\s/g, ''));
+
+                        return (
+                          <div key={sectionIndex}>
+                            {isEmojiOnly ? (
+                              <div className="text-[50px] mt-4">
+                                {section}
+                              </div>
+                            ) : (
+                              section.split('\n').map((line, lineIndex) => (
+                                <div key={lineIndex}>
+                                  {line}
+                                </div>
+                              ))
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    '[Your role description will be added here]'
+                  )}
+                </div>
               </div>
 
               {/* Solution Section */}
@@ -75,9 +155,34 @@ function CaseStudyTemplate({ project }) {
                 <h2 className="text-[32px] font-montserrat font-bold text-black mb-6">
                   Solution
                 </h2>
-                <p className="text-[18px] font-montserrat text-gray-700 leading-relaxed mb-4">
-                  {project.solution || '[Solution details will be added here]'}
-                </p>
+                <div className="text-[18px] font-montserrat text-gray-700 leading-relaxed mb-4 whitespace-pre-wrap">
+                  {project.solution ? (
+                    <div>
+                      {project.solution.split('\n\n').map((line, index) => {
+                        const trimmed = line.trim();
+                        const isEmojiOnly = trimmed.length > 0 && /^[^\p{L}\p{N}\p{P}]*$/u.test(trimmed.replace(/\s/g, ''));
+
+                        return (
+                          <div key={index}>
+                            {isEmojiOnly ? (
+                              <div className="text-[50px] mt-4">
+                                {line}
+                              </div>
+                            ) : (
+                              line.split('\n').map((textLine, lineIndex) => (
+                                <div key={lineIndex}>
+                                  {textLine}
+                                </div>
+                              ))
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    '[Solution details will be added here]'
+                  )}
+                </div>
               </div>
 
               {/* Time Frame Section */}
@@ -85,9 +190,19 @@ function CaseStudyTemplate({ project }) {
                 <h2 className="text-[32px] font-montserrat font-bold text-black mb-6">
                   Time frame
                 </h2>
-                <p className="text-[18px] font-montserrat text-gray-700" style={{ marginBottom: '40px' }}>
-                  {project.duration || '[Duration will be added here]'}
-                </p>
+                <div className="text-[18px] font-montserrat text-gray-700 whitespace-pre-wrap" style={{ marginBottom: '40px' }}>
+                  {project.duration ? (
+                    <div>
+                      {project.duration.split('\n').map((line, index) => (
+                        <div key={index}>
+                          {line}
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    '[Duration will be added here]'
+                  )}
+                </div>
                 {project.website && (
                   <div className="flex items-center gap-2">
                     <span className="text-[18px]">📎</span>
@@ -103,15 +218,33 @@ function CaseStudyTemplate({ project }) {
                 )}
               </div>
             </div>
+            {project.webImage && (
+              <div className="mt-8">
+                <img
+                  src={project.webImage}
+                  alt="Web and Mobile"
+                  className="w-full h-auto rounded-[20px] shadow-xl object-cover"
+                />
+              </div>
+            )}
           </div>
 
           {/* Right Column - Visuals */}
-          <div className="col-span-1">
+          <div className="col-span-1 flex flex-col" style={{ justifyContent: project.imageAlignment || 'flex-end' }}>
             {project.heroImage && (
               <div>
                 <img
                   src={project.heroImage}
                   alt={project.title}
+                  className="w-full h-auto rounded-[20px] shadow-xl object-cover"
+                />
+              </div>
+            )}
+            {project.mobileImage && (
+              <div className="mt-8" style={project.heroImage ? { marginTop: 'auto' } : {}}>
+                <img
+                  src={project.mobileImage}
+                  alt="Mobile"
                   className="w-full h-auto rounded-[20px] shadow-xl object-cover"
                 />
               </div>
@@ -130,7 +263,7 @@ function CaseStudyTemplate({ project }) {
           >
             <div
               className="w-16 h-16 rounded-full flex items-center justify-center transition group-hover:opacity-80 shadow-lg"
-              style={{ backgroundColor: project.backgroundColor }}
+              style={{ backgroundColor: project.navigationCircleColor || '#FFFFFF' }}
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2">
                 <path d="M15 19l-7-7 7-7"/>
@@ -148,7 +281,7 @@ function CaseStudyTemplate({ project }) {
           >
             <div
               className="w-16 h-16 rounded-full flex items-center justify-center transition group-hover:opacity-80 shadow-lg"
-              style={{ backgroundColor: project.backgroundColor }}
+              style={{ backgroundColor: project.navigationCircleColor || '#FFFFFF' }}
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2">
                 <path d="M9 5l7 7-7 7"/>
