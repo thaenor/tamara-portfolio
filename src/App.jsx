@@ -7,9 +7,12 @@ import XingPrivateProfile from './components/projects/XingPrivateProfile';
 import XingCultureCheck from './components/projects/XingCultureCheck';
 import Freely from './components/projects/Freely';
 import YuuSkydive from './components/projects/YuuSkydive';
+import { usePageTracking } from './hooks/usePageTracking';
 import './App.css';
 
 function App() {
+  usePageTracking();
+
   return (
     <div className="App">
       <Navigation />

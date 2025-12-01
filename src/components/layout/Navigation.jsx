@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { projectsData } from '../../data/projects';
+import { trackNavigationClick } from '../../utils/gtm';
 
 function Navigation() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -45,6 +46,7 @@ function Navigation() {
   }, [isHome]);
 
   const scrollToSection = (sectionId) => {
+    trackNavigationClick(sectionId, 'main');
     if (window.location.pathname === '/') {
       // On home page: scroll directly
       const element = document.getElementById(sectionId);
@@ -70,6 +72,7 @@ function Navigation() {
         <Link
           to="/"
           onClick={() => {
+            trackNavigationClick('home', 'main');
             if (isHome) {
               scrollToSection('home');
             }
@@ -117,7 +120,10 @@ function Navigation() {
                   key={project.id}
                   to={`/projects/${project.slug}`}
                   className="flex items-center gap-3 px-6 py-3 text-xl font-montserrat hover:bg-[#faeb99] transition"
-                  onClick={() => setIsDropdownOpen(false)}
+                  onClick={() => {
+                    trackNavigationClick(project.slug, 'dropdown');
+                    setIsDropdownOpen(false);
+                  }}
                 >
                   <img
                     src={project.logo}

@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Badge from '../home/Badge';
 import { projectsData } from '../../data/projects';
+import { trackExternalLink } from '../../utils/gtm';
 
 function CaseStudyTemplate({ project }) {
   const navigate = useNavigate();
@@ -210,9 +211,10 @@ function CaseStudyTemplate({ project }) {
                       href={project.website}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => trackExternalLink(project.website, `${project.title} website`)}
                       className="text-[18px] font-montserrat text-gray-700 hover:text-black transition"
                     >
-                      PairUp Events website
+                      {project.title} website
                     </a>
                   </div>
                 )}

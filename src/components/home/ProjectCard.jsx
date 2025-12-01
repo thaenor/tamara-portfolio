@@ -1,14 +1,20 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Badge from './Badge';
+import { trackProjectClick } from '../../utils/gtm';
 
 function ProjectCard({ imageSrc, backImage, title, year, tags = [], slug }) {
   const [isFlipped, setIsFlipped] = useState(false);
+
+  const handleProjectClick = () => {
+    trackProjectClick(slug, title);
+  };
 
   return (
     <div className="flex flex-col items-center group cursor-pointer no-underline" style={{ textDecoration: 'none', color: 'inherit' }}>
       <Link
         to={`/projects/${slug}`}
+        onClick={handleProjectClick}
         className="text-center mb-6 hover:underline transition no-underline"
         style={{ textDecoration: 'none', color: 'inherit' }}
       >
@@ -21,6 +27,7 @@ function ProjectCard({ imageSrc, backImage, title, year, tags = [], slug }) {
       {/* 3D Flip Container */}
       <Link
         to={`/projects/${slug}`}
+        onClick={handleProjectClick}
         style={{ textDecoration: 'none', color: 'inherit' }}
       >
       <div
