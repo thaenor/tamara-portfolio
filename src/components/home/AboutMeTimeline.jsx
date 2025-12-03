@@ -1,65 +1,128 @@
 import useInView from '../../hooks/useInView';
 
-function TimelineSection({ startDate, endDate, isVisible, isFirst = false }) {
-  return (
-    <div className={`flex-1 flex flex-col items-center relative pb-16 ${isVisible ? '' : ''}`}>
-      <div className={`text-center font-montserrat text-[24px] font-normal text-black mb-4 transition-opacity duration-500 ${isFirst ? 'pt-12' : ''} ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-        {startDate}
-      </div>
-      <div className={`flex-1 w-1 bg-black transition-opacity duration-500 relative ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-        <div className="absolute -left-2 top-0 w-5 h-5 bg-black rounded-full"></div>
-        <div className="absolute -left-2 bottom-0 w-5 h-5 bg-black rounded-full"></div>
-      </div>
-      <div className={`text-center font-montserrat text-[24px] font-normal text-black mt-4 transition-opacity duration-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-        {endDate}
-      </div>
-    </div>
-  );
-}
-
 function AboutMeTimeline({ images }) {
-  const [travelRef, travelInView] = useInView({ threshold: 0.4 });
-  const [pandemicRef, pandemicInView] = useInView({ threshold: 0.4 });
-  const [careerRef, careerInView] = useInView({ threshold: 0.4 });
+  const [bullet1Ref, bullet1InView] = useInView({ threshold: 0.4 });
+  const [bullet2Ref, bullet2InView] = useInView({ threshold: 0.4 });
+  const [bullet3Ref, bullet3InView] = useInView({ threshold: 0.4 });
+  const [bullet4Ref, bullet4InView] = useInView({ threshold: 0.4 });
+  const [bullet5Ref, bullet5InView] = useInView({ threshold: 0.4 });
 
   return (
     <div className="relative">
-      {/* Timeline Rail */}
-      <div className="absolute left-0 top-0 bottom-0 w-32 flex flex-col">
-        <TimelineSection startDate="2014" endDate="2022" isVisible={travelInView} isFirst={true} />
-        <TimelineSection startDate="2020" endDate="2022" isVisible={pandemicInView} />
-        <TimelineSection startDate="2022" endDate="Today" isVisible={careerInView} />
-      </div>
-
       {/* Content Card */}
-      <div className="bg-white rounded-[20px] px-12 pb-12 pt-7 shadow-lg opacity-100 ml-32 mr-32">
-        {/* Travel Industry - Horizontal Layout */}
-        <div ref={travelRef} className="flex gap-8 items-stretch" style={{ marginBottom: '94px' }}>
-          <div className="flex-1 flex flex-col justify-center">
-            <h3 className="text-[20px] font-montserrat font-bold mb-4">Travel industry ✈️</h3>
-            <p className="text-[20px] font-montserrat text-gray-700 leading-relaxed">
-              Before becoming a designer, I spent years working in the travel industry as an airline supervisor for Lufthansa.
-            </p>
+      <div className="bg-white rounded-[20px] px-12 pb-12 pt-7 shadow-lg opacity-100">
+        <h2 className="text-[60px] font-italiana font-normal text-black mb-8">
+          I am...
+        </h2>
+
+        {/* Bullet Points */}
+        <div className="space-y-8">
+          {/* Bullet Point 1 */}
+          <div
+            ref={bullet1Ref}
+            className={`flex gap-4 transition-opacity duration-500 ${bullet1InView ? 'fade-in opacity-100' : 'opacity-0'}`}
+          >
+            <div className="flex-shrink-0 w-2 h-2 bg-black rounded-full mt-3"></div>
+            <div className="flex-1">
+              <h3 className="font-montserrat font-bold text-black text-lg mb-2">
+                one of the organisers of the UX Camp Hamburg.
+              </h3>
+              <p className="font-montserrat text-gray-700 text-base mb-12">
+                A annual bar camp, attended by designers accross Germany.
+              </p>
+              <img
+                src="/Orgateam.JPG"
+                alt="UX Camp Hamburg organizer team"
+                className="w-1/2 h-auto rounded-[10px] object-cover"
+              />
+            </div>
           </div>
-          <img src={images.travelIndustry} alt="Agent" className="w-48 h-auto rounded-[5px] object-contain flex-shrink-0" />
-        </div>
 
-        {/* Corona Pandemic - Vertical Layout */}
-        <div ref={pandemicRef} className="mb-16">
-          <h3 className="text-[20px] font-montserrat font-bold mb-4">Corona pandemic 🌍</h3>
-          <p className="text-[20px] font-montserrat text-gray-700 leading-relaxed mb-8">
-            When the pandemic hit, I realized that the cards were being reshuffled, and it was the perfect time for a change.
-          </p>
-          <img src={images.pandemic} alt="Pandemic" className="w-96 h-auto rounded-[5px] object-contain" />
-        </div>
+          {/* Bullet Point 2 */}
+          <div
+            ref={bullet2Ref}
+            className={`flex gap-4 transition-opacity duration-500 ${bullet2InView ? 'fade-in opacity-100' : 'opacity-0'}`}
+          >
+            <div className="flex-shrink-0 w-2 h-2 bg-black rounded-full mt-3"></div>
+            <div className="flex-1">
+              <h3 className="font-montserrat font-bold text-black text-lg mb-2">
+                curious to experiment
+              </h3>
+              <p className="font-montserrat text-gray-700 text-base mb-12">
+                with various AI models that help me work more efficiently.
+              </p>
+              <img
+                src="/Office.png"
+                alt="Working with AI models"
+                className="w-1/2 h-auto rounded-[10px] object-cover"
+              />
+            </div>
+          </div>
 
-        {/* Career Change - Vertical Layout */}
-        <div ref={careerRef}>
-          <h3 className="text-[20px] font-montserrat font-bold mb-4">Successful career change</h3>
-          <p className="text-[20px] font-montserrat text-gray-700 leading-relaxed mb-8">
-            I used that period to transition into a design career, driven by my passion and curiosity. I believe in seizing every opportunity to grow and expand experiences.
-          </p>
-          <img src={images.careerChange} alt="Career" className="w-48 h-auto rounded-[20px] object-contain" />
+          {/* Bullet Point 3 */}
+          <div
+            ref={bullet3Ref}
+            className={`flex gap-4 transition-opacity duration-500 ${bullet3InView ? 'fade-in opacity-100' : 'opacity-0'}`}
+          >
+            <div className="flex-shrink-0 w-2 h-2 bg-black rounded-full mt-3"></div>
+            <div className="flex-1">
+              <h3 className="font-montserrat font-bold text-black text-lg mb-2">
+                just trying it out.
+              </h3>
+              <p className="font-montserrat text-gray-700 text-base mb-12">
+                After working on the startup idea since May 2025, I presented it five months later at Web Summit 2025 in Lisbon, pitching how I integrated AI to enhance the user experience and matchmaking for <a href="/#projects" className="text-black underline hover:opacity-70 transition-opacity">PairUp Events</a>.
+              </p>
+              <img
+                src="/Websummit.HEIC"
+                alt="Web Summit 2025 Lisbon presentation"
+                className="w-1/2 h-auto rounded-[10px] object-cover"
+              />
+            </div>
+          </div>
+
+          {/* Bullet Point 4 */}
+          <div
+            ref={bullet4Ref}
+            className={`flex gap-4 transition-opacity duration-500 ${bullet4InView ? 'fade-in opacity-100' : 'opacity-0'}`}
+          >
+            <div className="flex-shrink-0 w-2 h-2 bg-black rounded-full mt-3"></div>
+            <div className="flex-1">
+              <h3 className="font-montserrat font-bold text-black text-lg mb-2">
+                sharing my learnings
+              </h3>
+              <p className="font-montserrat text-gray-700 text-base mb-12">
+                After 3.5 days of pitching and networking at Web Summit, I shared my insights and analyzed the top three pitch winners by creating reaction videos.
+              </p>
+              <video
+                width="100%"
+                height="auto"
+                controls
+                defaultMuted
+                className="w-1/2 rounded-[10px]"
+              >
+                <source src="/Pitchingcontest.mov" type="video/quicktime" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+
+          {/* Bullet Point 5 */}
+          <div
+            ref={bullet5Ref}
+            className={`flex gap-4 transition-opacity duration-500 ${bullet5InView ? 'fade-in opacity-100' : 'opacity-0'}`}
+          >
+            <div className="flex-shrink-0 w-2 h-2 bg-black rounded-full mt-3"></div>
+            <div className="flex-1">
+              <h3 className="font-montserrat font-bold text-black text-lg mb-8">
+                in general like presenting and sharing 🤓
+              </h3>
+              <img
+                src="/Presenting.png"
+                alt="Presenting and sharing"
+                className="w-1/2 h-auto rounded-[10px] object-cover"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>

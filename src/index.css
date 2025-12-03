@@ -31,3 +31,17 @@ body {
   width: 100%;
   /* Removed text-align center to avoid inheriting to all components */
 }
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}

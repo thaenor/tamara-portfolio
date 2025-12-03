@@ -2,6 +2,89 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0] - 2025-12-02
+
+### Overview
+Google Tag Manager (GTM) analytics integration for comprehensive event tracking and page view monitoring across the portfolio.
+
+### Added
+- **Google Tag Manager Integration**: Implemented GTM for analytics tracking
+  - Added `src/utils/gtm.js` - Utility functions for tracking events
+  - Added `src/hooks/usePageTracking.js` - Custom hook for page view tracking
+  - Integrated GTM container configuration for event data collection
+
+- **Tracking Utilities** (`src/utils/gtm.js`):
+  - `trackProjectClick(slug, title)` - Tracks when users click on project cards
+    - Event parameters: slug (project identifier), title (project name)
+    - Enables understanding of which projects attract the most engagement
+  - `trackExternalLink(url, label)` - Tracks external link clicks (e.g., project websites)
+    - Event parameters: url (destination), label (link context)
+    - Helps monitor outbound traffic to project sites and partner websites
+
+- **Page Tracking Hook** (`src/hooks/usePageTracking.js`):
+  - Custom React hook for automatic page view tracking on route changes
+  - Integrates with React Router for seamless page view reporting
+  - Captures page title and location data for analytics
+
+- **Component Integration**:
+  - `src/components/home/ProjectCard.jsx` - Integrated project click tracking
+    - `handleProjectClick()` calls `trackProjectClick()` when projects are clicked
+    - Tracks engagement with individual project thumbnails
+  - `src/components/projects/CaseStudyTemplate.jsx` - Integrated external link tracking
+    - `trackExternalLink()` called when users click project website links
+    - Monitors clicks on "📎 [Project] website" links in case study pages
+  - `src/components/layout/Navigation.jsx` - Page view tracking integration
+  - `src/App.jsx` - Global tracking setup
+
+### Tracking Events Documented
+- **project_click** - User clicks on a project card
+  - Parameters: slug, title
+  - Page: Home (/), Projects Grid
+
+- **external_link_click** - User clicks on external project website
+  - Parameters: url, label
+  - Page: Case study pages (/projects/[slug])
+
+- **page_view** - User navigates to a new page
+  - Automatic capture on route changes
+  - Parameters: page_title, page_path, page_location
+
+### Technical Implementation
+- GTM container ID configured in window object
+- Event tracking follows Google Analytics 4 (GA4) naming conventions
+- All tracking functions properly handle URLs and labels with sanitization
+- usePageTracking hook prevents duplicate page view events
+- Tracking integration does not impact page performance or user experience
+- Non-blocking tracking calls ensure page responsiveness
+
+### Analytics Capabilities Enabled
+- User engagement metrics (project click-through rates)
+- Traffic flow analysis (which projects convert to external links)
+- Page navigation patterns (user journey through case studies)
+- External traffic sources (monitoring outbound clicks)
+- Device and audience segmentation (via GTM and GA4 integration)
+
+### File Changes
+- `src/utils/gtm.js` - NEW
+- `src/hooks/usePageTracking.js` - NEW
+- `src/App.jsx` - Updated with GTM configuration and usePageTracking hook
+- `src/components/home/ProjectCard.jsx` - Updated with trackProjectClick integration
+- `src/components/projects/CaseStudyTemplate.jsx` - Updated with trackExternalLink integration
+- `src/components/layout/Navigation.jsx` - Updated with page tracking support
+
+### Build & Testing
+- ✅ Production build: No size increase (tracking code is minimal)
+- ✅ All existing features functional with tracking enabled
+- ✅ No breaking changes to components or data structure
+- ✅ Tracking non-blocking and async
+
+### Future Enhancements
+- Custom event tracking for form submissions
+- Conversion tracking for CTA clicks
+- Video engagement tracking for embedded media
+- Session duration and scroll depth analytics
+- User interaction heatmaps via GTM extensions
+
 ## [1.3.0] - 2025-11-27
 
 ### Overview
